@@ -1,0 +1,49 @@
+--Create a retail store database
+
+CREATE TABLE tops (id INTEGER PRIMARY KEY, style TEXT, color TEXT, price NUMERIC, quantity INTEGER);
+
+CREATE TABLE pants (id INTEGER PRIMARY KEY, style TEXT, color TEXT, price NUMERIC, quantity INTEGER);
+CREATE TABLE sweaters (id INTEGER PRIMARY KEY, style TEXT, color TEXT, price NUMERIC, quantity INTEGER);
+CREATE TABLE jackets(id INTEGER PRIMARY KEY, style TEXT, color TEXT, price NUMERIC, quantity INTEGER);
+CREATE TABLE shoes (id INTEGER PRIMARY KEY, style TEXT, color TEXT, price NUMERIC, quantity INTEGER);
+
+INSERT INTO tops VALUES (1, 'tank tops', 'black', 6, 10);
+INSERT INTO tops VALUES (2, 'shirts', 'purple', 8, 10);
+INSERT INTO tops VALUES (3, 'blouses', 'pink', 10, 10);
+
+INSERT INTO pants VALUES (1, 'jeans', 'blue', 15, 10);
+INSERT INTO pants VALUES (2, 'dress pants', 'black', 18, 10);
+INSERT INTO pants VALUES (3, 'leggings', 'grey', 7, 10);
+
+INSERT INTO sweaters VALUES (1, 'pullover', 'pink', 10, 10);
+INSERT INTO sweaters VALUES (2, 'cardigan', 'purple', 10, 10);
+INSERT INTO sweaters VALUES (3, 'hoodie', 'black', 10, 10);
+
+INSERT INTO jackets VALUES (1, 'puffer jackets', 'grey', 25, 10);
+INSERT INTO jackets VALUES (2, 'fleece jackets', 'white', 20, 10);
+INSERT INTO jackets VALUES (3, 'heavy coat jackets', 'brown', 40, 10);
+
+INSERT INTO shoes VALUES (1, 'sneakers', 'white', 25, 10);
+INSERT INTO shoes VALUES (2, 'boots', 'brown', 30, 10);
+INSERT INTO shoes VALUES (3, 'flats', 'black', 20, 10);
+
+
+--display the database ordered by price.
+
+SELECT * FROM tops ORDER BY price ASC;
+
+
+SELECT * FROM pants ORDER BY price ASC;
+
+
+SELECT * FROM sweaters ORDER BY price ASC;
+
+
+SELECT * FROM jackets ORDER BY price ASC;
+
+
+SELECT * FROM shoes ORDER BY price ASC;
+
+
+--what is the sum of all items in the tops section? 
+SELECT SUM(quantity) FROM tops;
