@@ -1,0 +1,101 @@
+-- Create table about famous people and what they do
+
+CREATE TABLE famouspeople (id INTEGER PRIMARY KEY, fullname TEXT, hometown TEXT, spouse TEXT);
+
+INSERT INTO famouspeople (fullname, hometown) VALUES ("Harry Styles", "United Kingdom");
+
+INSERT INTO famouspeople (fullname, hometown, spouse) VALUES ("Tom Hanks", "California, USA", "Rita Wilson");
+
+INSERT INTO famouspeople (fullname, hometown, spouse) VALUES ("Rita Wilson" , "California, USA", "Tom Hanks");
+
+INSERT INTO famouspeople (fullname, hometown, spouse) VALUES ("Nicole Kidman", "Hawaii, USA", "Keith Urban");
+
+INSERT INTO famouspeople (fullname, hometown, spouse) VALUES ("Keith Urban", "New Zealand", "Nicole Kidman");
+
+INSERT INTO famouspeople (fullname, hometown) VALUES ("Taylor Swift", "Pennsylvania, USA");
+
+INSERT INTO famouspeople (fullname, hometown) VALUES ("Daniel Radcliffe" , "United Kingdom");
+
+INSERT INTO famouspeople (fullname, hometown) VALUES ("J.K. Rowling", "United Kingdom");
+
+INSERT INTO famouspeople (fullname, hometown) VALUES ("Stephen King", "Maine, USA");
+
+INSERT INTO famouspeople (fullname) VALUES ("Harry Potter");
+
+INSERT INTO famouspeople (fullname) VALUES ("Hermione Granger");
+
+INSERT INTO famouspeople (fullname) VALUES ("Ron Weasley");
+
+
+--Create a table for movies
+
+
+CREATE TABLE movies (id INTEGER PRIMARY KEY, movie_title TEXT, actor_id INTEGER, movie_characterid1 INTEGER, movie_characterid2 INTEGER, movie_characterid3 INTEGER);
+
+INSERT INTO movies (movie_title, actor_id) VALUES ( "Dont' Worry Darling", 1);
+
+INSERT INTO movies (movie_title, actor_id) VALUES ("Forrest Gump", 2);
+
+INSERT INTO movies (movie_title, actor_id) VALUES ("Jingle All The Way", 3);
+
+INSERT INTO movies (movie_title, actor_id) VALUES ("The Others", 4);
+
+INSERT INTO movies (movie_title, actor_id, movie_characterid1, movie_characterid2, movie_characterid3 ) VALUES ("Harry Potter", 7, 10, 12, 11);
+
+
+-- Create a table for songs
+
+
+CREATE TABLE songs (id INTEGER PRIMARY KEY, song_title TEXT, singer_id INTEGER);
+
+INSERT INTO songs (song_title, singer_id) VALUES ("Watermelon Sugar", 1);
+
+INSERT INTO songs (song_title, singer_id) VALUES ("Blue Ain't Your Color", 5);
+
+INSERT INTO songs (song_title, singer_id) VALUES ("Shake It Off",6);
+
+
+--Create a table for books
+
+
+CREATE TABLE books (id INTEGER PRIMARY KEY, book_title TEXT, author_id INTEGER, protagonist_id INTEGER, friend1_id INTEGER, friend2_id INTEGER);
+
+INSERT INTO books (book_title, author_id, protagonist_id, friend1_id, friend2_id) VALUES ("Harry Potter", 8, 10, 12, 11);
+
+INSERT INTO books (book_title, author_id) VALUES ("IT", 9);
+
+
+--Movie Stars:What movies are they in? Are they married to each other?
+
+
+SELECT famouspeople.fullname AS Movie_Stars, movies.movie_title as Movie_Title, famouspeople.spouse AS Spouse FROM famouspeople 
+JOIN movies 
+ON famouspeople.id = movies.actor_id;
+
+
+--Singers:What songs did they write? Where are they from?
+
+
+SELECT famouspeople.fullname AS Singers, songs.song_title AS Song, famouspeople.hometown AS Hometown FROM famouspeople 
+JOIN songs 
+ON famouspeople.id = songs.singer_id;
+
+
+--Authors:What books did they write?
+
+
+SELECT famouspeople.fullname AS Authors, books.book_title AS Book_Title FROM famouspeople  
+JOIN books 
+ON famouspeople.id = books.author_id;
+
+
+--Fictional Characters: How are they related to other characters? What books do they show up in?
+
+
+SELECT books.book_title AS Book_Title, a.fullname AS Protagonist, b.fullname AS Friend , c.fullname AS Friend FROM books
+JOIN famouspeople a
+ON books.protagonist_id = a.id
+JOIN famouspeople b
+ON books.friend1_id = b.id
+JOIN famouspeople c
+ON books.friend2_id = c.id;
